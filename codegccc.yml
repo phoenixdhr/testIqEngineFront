@@ -1,0 +1,11 @@
+overwrite: true
+schema: "https://iqengi-backend-production.up.railway.app/graphql" # URL del backend GraphQL
+documents: "src/graphql/*.graphql" # Ruta corregida
+generates:
+  src/graphql/generated/graphql.ts:
+    plugins:
+      - "typescript"                 # Genera tipos en TypeScript
+      - "typescript-operations"      # Genera tipos para Queries/Mutations/Subs
+      - "typescript-react-apollo"    # Genera hooks para Apollo (React)
+    config:
+      withHooks: true               # Genera hooks del tipo useXXXQuery, useXXXMutation, etc.

@@ -6,9 +6,26 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "prev": "npx kill-port 4322 && astro build && astro preview --port 4322",
+    "astro": "astro",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
-    "astro": "^5.3.0"
+    "@apollo/client": "^3.13.1",
+    "@astrojs/react": "^4.2.0",
+    "@tailwindcss/vite": "^4.0.7",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "astro": "^5.3.0",
+    "graphql": "^16.10.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.7"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "5.0.5",
+    "@graphql-codegen/typescript": "^4.1.4",
+    "@graphql-codegen/typescript-operations": "^4.5.0",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.2"
   }
 }
