@@ -1,0 +1,98 @@
+---
+import type { GetStaticPaths } from "astro";
+import slugify from "slugify";
+import { clientGql } from "../../graphql/apolloClient";
+import { CursosDocument, type Curso } from "../../graphql/generated/graphql";
+import Layout from "../../layouts/Layout.astro";
+import Cards from "../../components/Cards.astro";
+import "../../styles/global.css";
+
+
+const { data } = await clientGql.query({
+  query: CursosDocument,
+  variables: { offset: 0, limit: 10 },
+});
+
+export const getStaticPaths = (async({paginate}) => {
+  const { data } = await clientGql.query({
+  query: CursosDocument,
+  variables: { offset: 0, limit: 10 },
+});
+
+const cursos: Curso[] = data?.Cursos;
+
+// const prospParams = cursos.map(curso => ({
+  
+//     props: {...curso},
+//     params:{slugCourseTitle:  slugify(curso.courseTitle, { lower: true, strict: true })}}))
+
+    // console.log(prospParams)
+    return paginate(cursos, {pageSize: 3});
+}) satisfies GetStaticPaths;
+
+const {page } = Astro.props
+
+
+// console.log("====================================================")
+// console.log(page.data)
+// console.log("====================================================")
+
+console.log(page)
+const cursos: Curso[] = data?.Cursos;
+const isDisableNext: boolean =  Number(page.currentPage) == Number(page.lastPage)
+const isDisablePrev:boolean  =  Number(page.currentPage) == 1
+
+console.log(page.currentPage, "==" ,page.lastPage)
+
+console.log(isDisableNext);
+
+---
+
+<Layout tituloPagina="Cursos">
+  <h1 class="text-2xl font-bold text-center my-6">Catálogo de Cursos</h1>
+
+<section class="grid grid-cols-1 md:grid-cols-3 gap-4 px-8">
+  {page.data.map((curso) => ( <Cards {...curso} isBig={false}/>  ))}
+  
+</section>
+
+<section class="flex">
+    <a 
+    class:list={[
+        "btnn",
+       {
+        "pointer-events-none cursor-not-allowed bg-gray-600 text-gray-400" : isDisablePrev
+       }
+    ]} 
+     href=`${page.url.prev}` >Anterior </a>
+    <h2>{page.currentPage}</h2>
+    <a class:list={[
+        "btnn",
+       {
+        "pointer-events-none cursor-not-allowed bg-gray-600 text-gray-400" : isDisableNext
+       }
+    ]} href=`${page.url.next}` >Siguiente </a>
+</section>
+
+</Layout>
+
+
+<style>
+    @reference "tailwindcss"
+
+
+    
+    
+    .disablee {
+        @apply bg-gray-600 text-gray-400 
+    }
+    
+    
+    .btnn {
+        @apply bg-blue-500 p-2
+    }
+
+
+</style>
+
+
