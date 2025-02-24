@@ -33,18 +33,8 @@ const cursos: Curso[] = data?.Cursos;
 const {page } = Astro.props
 
 
-// console.log("====================================================")
-// console.log(page.data)
-// console.log("====================================================")
-
-console.log(page)
 const cursos: Curso[] = data?.Cursos;
-const isDisableNext: boolean =  Number(page.currentPage) == Number(page.lastPage)
-const isDisablePrev:boolean  =  Number(page.currentPage) == 1
 
-console.log(page.currentPage, "==" ,page.lastPage)
-
-console.log(isDisableNext);
 
 ---
 
@@ -56,20 +46,20 @@ console.log(isDisableNext);
   
 </section>
 
-<section class="flex">
+<section class="flex contain-content justify-center gap-4">
     <a 
     class:list={[
         "btnn",
        {
-        "pointer-events-none cursor-not-allowed bg-gray-600 text-gray-400" : isDisablePrev
+        "pointer-events-none cursor-not-allowed bg-gray-600 text-gray-400" : !Boolean(page.url.prev)
        }
     ]} 
      href=`${page.url.prev}` >Anterior </a>
-    <h2>{page.currentPage}</h2>
+    <span class="text-xl font-bold"> page {page.currentPage}</span>
     <a class:list={[
         "btnn",
        {
-        "pointer-events-none cursor-not-allowed bg-gray-600 text-gray-400" : isDisableNext
+        "pointer-events-none cursor-not-allowed bg-gray-600 text-gray-400" : !Boolean(page.url.next)
        }
     ]} href=`${page.url.next}` >Siguiente </a>
 </section>
