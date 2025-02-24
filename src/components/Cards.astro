@@ -24,9 +24,9 @@ const slugCourseTitle =slugify(courseTitle, { lower: true, strict: true })
 ]}
     >
     <article id={_id}>
-        <h2 class="text-xl font-bold">{courseTitle}</h2>
+        <h2 class="text-xl font-bold" transition:name=`${courseTitle}-text`>{courseTitle}</h2>
         <hr>
-        <img src={imagenURL?.url} alt={imagenURL?.alt} class="w-full h-40 object-cover rounded-lg" />
+        <img src={imagenURL?.url} alt={imagenURL?.alt} class="w-full h-40 object-cover rounded-lg" transition:name=`${courseTitle}-image`/>
         <p class="text-gray-700">{descripcionCorta}</p>
         <p class="text-gray-500">Duración: {duracionHoras} horas</p>
         <p class="text-blue-600 font-bold">Precio: ${precio}</p>

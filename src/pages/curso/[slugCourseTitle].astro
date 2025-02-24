@@ -34,10 +34,10 @@ const { courseTitle, imagenURL, descripcionCorta, duracionHoras, precio, _id } =
 ---
 
 <Layout tituloPagina={courseTitle} >
-  <h1 class="flex flex-col justify-center items-center">{courseTitle}</h1>
+  <h1 class="flex flex-col justify-center items-center" transition:name=`${courseTitle}-text`>{courseTitle}</h1>
 
 <div class="flex">
   <h2>sdcsdcs</h2>
-  <img src={imagenURL?.url} alt={imagenURL?.alt} >
+  <img src={imagenURL?.url} alt={imagenURL?.alt} transition:name=`${courseTitle}-image` >
 </div>
 </Layout>
