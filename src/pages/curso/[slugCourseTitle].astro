@@ -3,10 +3,10 @@ import slugify from "slugify";
 
 
 import type { GetStaticPaths } from "astro";
-import { clientGql } from "../../graphql/apolloClient";
-import { CursosDocument, type Curso } from "../../graphql/generated/graphql";
-import "../../styles/global.css";
-import Layout from "../../layouts/Layout.astro";
+import { clientGql } from "@graphql-astro/apolloClient";
+import { CursosDocument, type Curso } from "@graphql-astro/generated/graphql";
+import "@styles/global.css";
+import Layout from "@layouts/Layout.astro";
 
 
 

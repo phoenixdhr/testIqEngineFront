@@ -1,11 +1,11 @@
 ---
 import type { GetStaticPaths } from "astro";
 import slugify from "slugify";
-import { clientGql } from "../../graphql/apolloClient";
-import { CursosDocument, type Curso } from "../../graphql/generated/graphql";
-import Layout from "../../layouts/Layout.astro";
-import Cards from "../../components/Cards.astro";
-import "../../styles/global.css";
+import { clientGql } from "@graphql-astro/apolloClient";
+import { CursosDocument, type Curso } from "@graphql-astro/generated/graphql";
+import Layout from "@layouts/Layout.astro";
+import Cards from "@components/Cards.astro";
+import "@styles/global.css";
 
 
 const { data } = await clientGql.query({

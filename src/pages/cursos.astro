@@ -1,8 +1,8 @@
 ---
-import Cards from "../components/Cards.astro";
-import { clientGql } from "../graphql/apolloClient";
-import { CursosDocument, type Curso } from "../graphql/generated/graphql";
-import Layout from "../layouts/Layout.astro";
+import Cards from "@components/Cards.astro";
+import { clientGql } from "@graphql-astro/apolloClient";
+import { CursosDocument, type Curso } from "@graphql-astro/generated/graphql";
+import Layout from "@layouts/Layout.astro";
 
 const { data } = await clientGql.query({
   query: CursosDocument,
