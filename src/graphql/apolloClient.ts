@@ -3,7 +3,7 @@ import { ApolloClient } from '@apollo/client/core';
 import { InMemoryCache } from '@apollo/client/cache';
 
 // Creamos y exportamos una instancia de ApolloClient con la configuración necesaria.
-export const client = new ApolloClient({
+export const clientGql = new ApolloClient({
   // Definimos la URL del servidor GraphQL al que se conectará Apollo Client.
   uri: "https://iqengi-backend-production.up.railway.app/graphql",
 

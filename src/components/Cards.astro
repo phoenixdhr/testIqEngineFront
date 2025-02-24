@@ -1,0 +1,34 @@
+---
+import slugify from "slugify";
+import type { Curso } from "../graphql/generated/graphql";
+
+
+export interface Props extends Curso {
+  isBig: boolean; // Agregando una nueva propiedad
+}
+
+
+const { courseTitle, imagenURL, descripcionCorta, duracionHoras, precio, _id, isBig= false } = Astro.props
+
+const slugCourseTitle =slugify(courseTitle, { lower: true, strict: true })
+
+
+
+---
+
+<a href={`./curso/${slugCourseTitle}`} class:list={[
+    `block rounded-lg p-4 shadow hover:shadow-lg transition`,
+    {
+        'border' : !isBig
+    }
+]}
+    >
+    <article id={_id}>
+        <h2 class="text-xl font-bold">{courseTitle}</h2>
+        <hr>
+        <img src={imagenURL?.url} alt={imagenURL?.alt} class="w-full h-40 object-cover rounded-lg" />
+        <p class="text-gray-700">{descripcionCorta}</p>
+        <p class="text-gray-500">Duración: {duracionHoras} horas</p>
+        <p class="text-blue-600 font-bold">Precio: ${precio}</p>
+    </article>
+</a>
