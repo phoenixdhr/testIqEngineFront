@@ -8,9 +8,9 @@ import react from "@astrojs/react";
 
 
 const SITE_URL = new URL(
-  import.meta.env.MODE === "production"
-    ? "https://testiqenginefront-production.up.railway.app/"
-    : "http://localhost:4321"
+  import.meta.env.MODE === "development"
+    ? "http://localhost:4321"
+    : "https://testiqenginefront-production.up.railway.app/"
 );
 
 
