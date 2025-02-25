@@ -8,7 +8,7 @@ import react from "@astrojs/react";
 
 export default defineConfig({
   base: '/', // Aquí es donde se define la variable global BASE_URL
-  site: "http://localhost:4321", // Aquí es donde se define la variable global SITE
+  site: import.meta.env.DEV? "http://localhost:4321" : "testiqenginefront-production.up.railway.app", // Aquí es donde se define la variable global SITE
 
   vite: {
     plugins: [tailwindcss()],
