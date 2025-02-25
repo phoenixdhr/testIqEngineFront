@@ -18,7 +18,7 @@ const SITE_URL = new URL(
 
 export default defineConfig({
   base: '/', // Aquí es donde se define la variable global BASE_URL
-  site: SITE_URL.href,// Aquí es donde se define la variable global SITE
+  site: "https://testiqenginefront-production.up.railway.app/", //SITE_URL.href,// Aquí es donde se define la variable global SITE
 
   vite: {
     plugins: [tailwindcss()],
