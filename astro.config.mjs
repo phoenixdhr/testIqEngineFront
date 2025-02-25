@@ -6,9 +6,17 @@ import sitemap from '@astrojs/sitemap';
 import react from "@astrojs/react";
 // import { DOMINIO } from "astro:env/client";
 
+
+const SITE_URL = new URL(
+  process.env.NODE_ENV === "production"
+    ? "https://testiqenginefront-production.up.railway.app"
+    : "http://localhost:4321"
+);
+
+
 export default defineConfig({
   base: '/', // Aquí es donde se define la variable global BASE_URL
-  site: import.meta.env.DEV? "http://localhost:4321" : "testiqenginefront-production.up.railway.app", // Aquí es donde se define la variable global SITE
+  site:SITE_URL.href,// Aquí es donde se define la variable global SITE
 
   vite: {
     plugins: [tailwindcss()],
