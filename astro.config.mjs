@@ -8,8 +8,8 @@ import react from "@astrojs/react";
 
 
 const SITE_URL = new URL(
-  process.env.NODE_ENV === "production"
-    ? "https://testiqenginefront-production.up.railway.app"
+  import.meta.env.MODE === "production"
+    ? "https://testiqenginefront-production.up.railway.app/"
     : "http://localhost:4321"
 );
 
