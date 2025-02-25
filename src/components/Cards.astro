@@ -16,7 +16,7 @@ const slugCourseTitle =slugify(courseTitle, { lower: true, strict: true })
 
 ---
 
-<a href={`./${slugCourseTitle}`} class:list={[
+<a href={`./cursos/${slugCourseTitle}`} class:list={[
     `block rounded-lg p-4 shadow hover:shadow-lg transition`,
     {
         'border' : !isBig

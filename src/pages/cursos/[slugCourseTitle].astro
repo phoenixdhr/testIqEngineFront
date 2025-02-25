@@ -1,43 +1,48 @@
 ---
 import slugify from "slugify";
 
-
 import type { GetStaticPaths } from "astro";
 import { clientGql } from "@graphql-astro/apolloClient";
-import { CursosDocument, type Curso } from "@graphql-astro/generated/graphql";
+
 import "@styles/global.css";
+import { CursosDocument, type Curso } from "@graphql-astro/generated/graphql";
 import Layout from "@layouts/Layout.astro";
 
 
 
 export const getStaticPaths = (async() => {
-  const { data } = await clientGql.query({
-  query: CursosDocument,
-  variables: { offset: 0, limit: 10 },
-});
+    const { data } = await clientGql.query({
+    query: CursosDocument,
+    variables: { offset: 0, limit: 10 },
+    });
 
-const cursos: Curso[] = data?.Cursos;
+    const cursos: Curso[] = data?.Cursos;
 
-const prospParams = cursos.map(curso => ({
+    const prospParams = cursos.map(curso => ({
   
     props: {...curso},
     params:{slugCourseTitle:  slugify(curso.courseTitle, { lower: true, strict: true })}}))
 
-    console.log(prospParams)
     return [...prospParams];
 }) satisfies GetStaticPaths;
 
 
 const { courseTitle, imagenURL, descripcionCorta, duracionHoras, precio, _id } = Astro.props as Curso 
+const slugCourseTitle = slugify(courseTitle, { lower: true, strict: true });
 
 
 ---
-
-<Layout tituloPagina={courseTitle} >
+<Layout 
+    tituloPagina={courseTitle} 
+    description={descripcionCorta} 
+    slug={`cursos/${slugCourseTitle}`} 
+    image={imagenURL?.url} 
+    type="article"
+>
   <h1 class="flex flex-col justify-center items-center" transition:name=`${courseTitle}-text`>{courseTitle}</h1>
 
-<div class="flex">
-  <h2>sdcsdcs</h2>
+<div class="flex justify-between m-4">
+  <h2>{descripcionCorta}</h2>
   <img src={imagenURL?.url} alt={imagenURL?.alt} transition:name=`${courseTitle}-image` >
 </div>
 </Layout>

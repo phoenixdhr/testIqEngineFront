@@ -1,0 +1,59 @@
+---
+import { siteInfo } from 'src/const/site-info';
+
+
+interface Props {
+    titleWeb?: string;
+    descriptionWeb?: string;
+    slug?: string;
+    imageWeb?: string;
+    typeWeb?: string;
+}
+
+
+const { titleWeb = siteInfo.titleWeb,
+        descriptionWeb = siteInfo.descripcion, 
+        slug= '', 
+        imageWeb= siteInfo.image, 
+        typeWeb = siteInfo.type
+    } = Astro.props;
+
+
+
+const url = `${siteInfo.dominio}/${slug}`;
+---
+
+<!-- Metadatos por defecto <head> -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- Metadatos Tags estándar (HTML)-->
+<title>{titleWeb} - IQEngi</title>
+<meta name="description" content={descriptionWeb} />
+<meta name="robots" content="index, follow" />
+<!-- <meta name="author" content="Nombre del Autor"> -->
+
+<!-- Open Graph (Facebook, LinkedIn) -->
+<meta property="og:type" content={typeWeb} />
+<meta property="og:title" content={titleWeb} />
+<meta property="og:description" content={descriptionWeb} />
+<meta property="og:image" content={imageWeb} />
+<meta property="og:url" content={url} />
+<!-- <meta property="article:author" content="https://www.facebook.com/AutorDelArticulo"> -->
+
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={titleWeb} />
+<meta name="twitter:description" content={descriptionWeb} />
+<meta name="twitter:image" content={imageWeb} />
+<meta name="twitter:url" content={url}>
+<!-- <meta name="twitter:creator" content="@AutorDelArticulo"> -->
+
+
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="/favicon.png" />
