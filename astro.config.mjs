@@ -29,7 +29,7 @@ export default defineConfig({
   
   env :{
     schema:{
-      API_GRAPHQL: envField.string({context:'client', access:"public", default:"http://localhost:4321"}),
+      API_GRAPHQL: envField.string({context:'client', access:"public", default:"http://localhost:5555"}),
     }
   },
   
