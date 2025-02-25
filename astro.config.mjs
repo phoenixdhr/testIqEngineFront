@@ -5,10 +5,12 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from '@astrojs/sitemap';
 import react from "@astrojs/react";
 // import { DOMINIO } from "astro:env/client";
+import { loadEnv } from 'vite';
 
+const env = loadEnv(import.meta.env.MODE, process.cwd(), '');
 
 const SITE_URL = new URL(
-  import.meta.env.MODE === "development"
+  env.RAILWAY_ENVIRONMENT_NAME === "development"
     ? "http://localhost:4321"
     : "https://testiqenginefront-production.up.railway.app/"
 );
@@ -16,7 +18,7 @@ const SITE_URL = new URL(
 
 export default defineConfig({
   base: '/', // Aquí es donde se define la variable global BASE_URL
-  site:SITE_URL.href,// Aquí es donde se define la variable global SITE
+  site: SITE_URL.href,// Aquí es donde se define la variable global SITE
 
   vite: {
     plugins: [tailwindcss()],

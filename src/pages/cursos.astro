@@ -4,6 +4,10 @@ import { clientGql } from "@graphql-astro/apolloClient";
 import { CursosDocument, type Curso } from "@graphql-astro/generated/graphql";
 import Layout from "@layouts/Layout.astro";
 import { getCoursesJsonLd } from "src/utils/jsonld";
+import { loadEnv } from 'vite';
+
+const env = loadEnv(import.meta.env.MODE, process.cwd(), '');
+
 
 const { data } = await clientGql.query({
   query: CursosDocument,
@@ -16,7 +20,7 @@ const cursos: Curso[] = data?.Cursos;
 const coursesJsonLd = getCoursesJsonLd(cursos)
 
 console.log("import.meta.env.DEV:    ", import.meta.env.DEV)
-console.log("import.meta.env.MODE:    ", import.meta.env.MODE)
+console.log("import.meta.env.MODE:    ", env.RAILWAY_ENVIRONMENT_NAME)
 
 
 ---
