@@ -7,6 +7,7 @@ import { clientGql } from "@graphql-astro/apolloClient";
 import "@styles/global.css";
 import { CursosDocument, type Curso } from "@graphql-astro/generated/graphql";
 import Layout from "@layouts/Layout.astro";
+import { getCourseJsonLd } from "src/utils/jsonld";
 
 
 
@@ -29,7 +30,7 @@ export const getStaticPaths = (async() => {
 
 const { courseTitle, imagenURL, descripcionCorta, duracionHoras, precio, _id } = Astro.props as Curso 
 const slugCourseTitle = slugify(courseTitle, { lower: true, strict: true });
-
+const courseJsonLd = getCourseJsonLd(Astro.props)
 
 ---
 <Layout 
@@ -38,6 +39,7 @@ const slugCourseTitle = slugify(courseTitle, { lower: true, strict: true });
     slug={`cursos/${slugCourseTitle}`} 
     image={imagenURL?.url} 
     type="article"
+    seoJsonLd={courseJsonLd}
 >
   <h1 class="flex flex-col justify-center items-center" transition:name=`${courseTitle}-text`>{courseTitle}</h1>
 

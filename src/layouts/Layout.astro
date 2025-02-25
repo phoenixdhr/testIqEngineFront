@@ -8,8 +8,9 @@ interface Props {
     slug?: string;
     image?: string;
     type?: string;
+	seoJsonLd: object
 }
-const { tituloPagina, description, slug, image, type } = Astro.props;
+const { tituloPagina, description, slug, image, type,seoJsonLd: courseJsonLd } = Astro.props;
 
 ---
 
@@ -22,7 +23,9 @@ const { tituloPagina, description, slug, image, type } = Astro.props;
 		descriptionWeb={description} 
 		slug={slug} 
 		imageWeb={image} 
-		typeWeb={type} >
+		typeWeb={type} 
+		courseJsonLd= {courseJsonLd}
+		>
 	</Seo>
 	
 </head>

@@ -1,10 +1,13 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import { getHomeJsonLd } from "src/utils/jsonld";
 const tituloPagina = 'Pokemoon Static | Home'
+
+const homeJsonLd =getHomeJsonLd()
 
 ---
 
 
-<Layout tituloPagina={tituloPagina}>
+<Layout tituloPagina={tituloPagina} seoJsonLd={homeJsonLd}>
 	<h1 class="text-2xl text-blue-500">Astro</h1>
 </Layout>
