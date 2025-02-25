@@ -4,9 +4,11 @@ import { defineConfig, envField } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from '@astrojs/sitemap';
 import react from "@astrojs/react";
+// import { DOMINIO } from "astro:env/client";
 
 export default defineConfig({
-  site: 'http://localhost:4321',
+  base: '/', // Aquí es donde se define la variable global BASE_URL
+  site: "http://localhost:4321", // Aquí es donde se define la variable global SITE
 
   vite: {
     plugins: [tailwindcss()],
@@ -17,8 +19,7 @@ export default defineConfig({
   
   env :{
     schema:{
-      DOMINIO_DEV: envField.string({context:'server', access:'public', default:"http://localhost:4321"}),
-      DOMINIO_PREV: envField.string({context:'server', access:'public', default:"http://localhost:4322"}),
+      API_GRAPHQL: envField.string({context:'client', access:"public", default:"http://localhost:4321"}),
     }
   },
   
@@ -37,11 +38,11 @@ export default defineConfig({
       filter: (page) =>
         !['/admin/', '/privado/', '/login/'].some((ruta) => page.includes(ruta)),
 
-      // Páginas externas o adicionales que quieras incluir
-      customPages: [
-        'https://tudominio.com/pagina-externa',
-        'https://tudominio.com/landing-promo',
-      ],
+      // // Páginas externas o adicionales que quieras incluir
+      // customPages: [
+      //   'https://tudominio.com/pagina-externa',
+      //   'https://tudominio.com/landing-promo',
+      // ],
 
       // Número máximo de URLs por archivo del sitemap (opcional)
       entryLimit: 50000,
@@ -62,7 +63,6 @@ export default defineConfig({
         locales: {
           es: 'es-ES',
           en: 'en-US',
-          fr: 'fr-FR',
         },
       },
 

@@ -1,7 +1,7 @@
 import { siteInfo } from "./site-info";
 
 export const siteSchema = {
-    context: "https://schema.org",
+    context: siteInfo.dominio,
     siteName: siteInfo.titleWeb,
     siteUrl: siteInfo.dominio,
     organization: {

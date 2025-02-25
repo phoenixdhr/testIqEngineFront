@@ -1,11 +1,14 @@
 
 import { ApolloClient } from '@apollo/client/core';
 import { InMemoryCache } from '@apollo/client/cache';
+import { loadEnv } from 'vite';
+
+const env = loadEnv(import.meta.env.MODE, process.cwd(), '');
 
 // Creamos y exportamos una instancia de ApolloClient con la configuración necesaria.
 export const clientGql = new ApolloClient({
   // Definimos la URL del servidor GraphQL al que se conectará Apollo Client.
-  uri: "https://iqengi-backend-production.up.railway.app/graphql",
+  uri: env.PUBLIC_GRAPHQL_URL, //"https://iqengi-backend-production.up.railway.app/graphql",
 
   // Configuramos la caché para almacenar en memoria los resultados de las consultas.
   cache: new InMemoryCache(),
