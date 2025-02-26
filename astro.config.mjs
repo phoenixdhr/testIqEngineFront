@@ -1,4 +1,3 @@
-
 // @ts-check
 import { defineConfig, envField } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
@@ -6,6 +5,8 @@ import sitemap from '@astrojs/sitemap';
 import react from "@astrojs/react";
 // import { DOMINIO } from "astro:env/client";
 import { loadEnv } from 'vite';
+
+import node from '@astrojs/node';
 
 const env = loadEnv(import.meta.env.MODE, process.cwd(), '');
 
@@ -17,8 +18,11 @@ const SITE_URL = new URL(
 
 
 export default defineConfig({
-  base: '/', // Aquí es donde se define la variable global BASE_URL
-  site: "https://testiqenginefront-production.up.railway.app/", //SITE_URL.href,// Aquí es donde se define la variable global SITE
+  // Aquí es donde se define la variable global BASE_URL
+  base: '/',
+
+  //SITE_URL.href,// Aquí es donde se define la variable global SITE
+  site: "https://testiqenginefront-production.up.railway.app/",
 
   vite: {
     plugins: [tailwindcss()],
@@ -26,13 +30,13 @@ export default defineConfig({
       include: ["@apollo/client"]
     }
   },
-  
+
   env :{
     schema:{
       API_GRAPHQL: envField.string({context:'client', access:"public", default:"http://localhost:5555"}),
     }
   },
-  
+
   integrations: [
     sitemap({
       // Frecuencia con la que cambian las páginas (opcional)
@@ -84,7 +88,18 @@ export default defineConfig({
     }),
 
     react()],
+  
+  // Agregamos el adaptador de Node en modo "standalone"
+  adapter: node({
+    mode: 'standalone',
+  }),
 
 
-
+    // ¡IMPORTANTE! Forzamos a que escuche en 0.0.0.0
+    server: {
+      host: '0.0.0.0',
+    },
+  
+  // El modo de salida debe ser "server" (o "hybrid")
+  output: 'server',
 });
