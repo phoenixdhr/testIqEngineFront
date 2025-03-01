@@ -12,7 +12,7 @@ const env = loadEnv(import.meta.env.MODE, process.cwd(), '');
 
 const SITE_URL = new URL(
   env.RAILWAY_ENVIRONMENT_NAME === "development"
-    ? "localhost:4321"
+    ? env.RAILWAY_PUBLIC_DOMAIN
     : "testiqenginefront-production.up.railway.app/"
 );
 
