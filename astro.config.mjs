@@ -10,7 +10,8 @@ import node from '@astrojs/node';
 
 const env = loadEnv(import.meta.env.MODE, process.cwd(), '');
 
-const SITE_URL = new URL(env.PUBLIC_DOMAIN);
+const rawSiteUrl = env.PUBLIC_DOMAIN?.trim();  // Asegura que no haya espacios adicionales
+const SITE_URL = rawSiteUrl ? new URL(rawSiteUrl) : new URL("http://localhost:4321");
 
 // const SITE_URL = new URL(
 //   env.RAILWAY_ENVIRONMENT_NAME === "development"
