@@ -12,17 +12,21 @@ const env = loadEnv(import.meta.env.MODE, process.cwd(), '');
 
 const SITE_URL = new URL(
   env.RAILWAY_ENVIRONMENT_NAME === "development"
-    ? "http://localhost:4321"
-    : "https://testiqenginefront-production.up.railway.app/"
+    ? "localhost:4321"
+    : "testiqenginefront-production.up.railway.app/"
 );
 
+console.log("========================");
+console.log("RAILWAY_ENVIRONMENT_NAME", env.RAILWAY_ENVIRONMENT_NAME);
+console.log("========================");
+console.log("SITE_URL", SITE_URL);
 
 export default defineConfig({
   // Aquí es donde se define la variable global BASE_URL
   base: '/',
 
   //SITE_URL.href,// Aquí es donde se define la variable global SITE
-  site: "https://testiqenginefront-production.up.railway.app/",
+  site: SITE_URL.href,
 
   vite: {
     plugins: [tailwindcss()],
